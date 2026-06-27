@@ -1,0 +1,11 @@
+{
+  "name": "dbforge",
+  "private": true,
+  "workspaces": ["api", "cli", "mcp"],
+  "scripts": {
+    "dev:api": "npm run dev --workspace=api",
+    "dev:mcp": "npm run dev --workspace=mcp",
+    "build": "npm run build --workspaces",
+    "typecheck": "npm run build --workspaces --if-present"
+  }
+}
