@@ -1,7 +1,7 @@
 {
   "name": "basely",
   "version": "0.1.0",
-  "description": "CLI for dbforge — AI-native Postgres provisioning",
+  "description": "CLI for basely — AI-native Postgres provisioning",
   "bin": {
     "basely": "./dist/index.js"
   },

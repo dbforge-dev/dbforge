@@ -1,4 +1,4 @@
-# dbforge
+# basely
 
 AI-native Postgres provisioning. Spin up isolated Postgres databases in under a second — built for AI agents, CLIs, and indie developers.
 
@@ -7,8 +7,8 @@ AI-native Postgres provisioning. Spin up isolated Postgres databases in under a 
 | Package | Description |
 |---------|-------------|
 | [`api`](./api) | REST API — provisions schemas/roles on a shared RDS cluster |
-| [`cli`](./cli) | `dbforge` CLI — manage projects, run SQL, apply migrations, generate types |
-| [`mcp`](./mcp) | MCP server — exposes dbforge as tools Claude/Cursor can call directly |
+| [`cli`](./cli) | `basely` CLI — manage projects, run SQL, apply migrations, generate types |
+| [`mcp`](./mcp) | MCP server — exposes basely as tools Claude/Cursor can call directly |
 
 ## How it works
 
@@ -36,23 +36,23 @@ npm run dev
 cd cli
 npm install && npm run build && npm link
 
-dbforge auth setup --url http://localhost:3000 --key your-key
+basely auth setup --url http://localhost:3000 --key your-key
 ```
 
 ### 3. Create a project
 
 ```bash
-dbforge projects create myapp
-# → connection string printed + saved to ~/.dbforge/projects.json
+basely projects create myapp
+# → connection string printed + saved to ~/.basely/projects.json
 ```
 
 ### 4. Use it
 
 ```bash
-dbforge migration push myapp --name 001_init --file ./schema.sql
-dbforge db execute myapp --sql "SELECT * FROM users"
-dbforge db schema myapp
-dbforge gen types myapp --out src/db.ts
+basely migration push myapp --name 001_init --file ./schema.sql
+basely db execute myapp --sql "SELECT * FROM users"
+basely db schema myapp
+basely gen types myapp --out src/db.ts
 ```
 
 ## MCP (Claude / Cursor)
@@ -62,12 +62,12 @@ Add to your `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "dbforge": {
+    "basely": {
       "command": "node",
-      "args": ["/path/to/dbforge/mcp/dist/index.js"],
+      "args": ["/path/to/basely/mcp/dist/index.js"],
       "env": {
-        "DBFORGE_API_URL": "http://localhost:3000",
-        "DBFORGE_API_KEY": "your-key"
+        "BASELY_API_URL": "http://localhost:3000",
+        "BASELY_API_KEY": "your-key"
       }
     }
   }

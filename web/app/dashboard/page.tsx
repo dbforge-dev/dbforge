@@ -240,7 +240,7 @@ function Dashboard() {
               <code className="text-white/60 text-xs font-mono flex-1 break-all">{apiKey}</code>
               <CopyButton text={apiKey} />
             </div>
-            <p className="text-white/20 text-xs mt-2 font-mono">basely auth setup --url https://dbforge-api.fly.dev --key &lt;key&gt;</p>
+            <p className="text-white/20 text-xs mt-2 font-mono">basely auth setup --url https://api.basely.cc --key &lt;key&gt;</p>
           </div>
         )}
 

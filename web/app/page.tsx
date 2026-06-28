@@ -20,10 +20,10 @@ const MCP_CONFIG = `// claude_desktop_config.json
   "mcpServers": {
     "basely": {
       "command": "node",
-      "args": ["/path/to/dbforge-mcp/dist/index.js"],
+      "args": ["/path/to/basely/mcp/dist/index.js"],
       "env": {
-        "DBFORGE_API_URL": "https://api.basely.cc",
-        "DBFORGE_API_KEY": "dbf_..."
+        "BASELY_API_URL": "https://api.basely.cc",
+        "BASELY_API_KEY": "bly_..."
       }
     }
   }
@@ -80,7 +80,7 @@ export default function Home() {
           <div className="flex items-center gap-6 text-sm text-white/60">
             <a href="#docs"    className="hover:text-white transition-colors">Docs</a>
             <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
-            <a href="https://github.com/dbforge-dev/dbforge" target="_blank" rel="noopener" className="hover:text-white transition-colors">GitHub</a>
+            <a href="https://github.com/dbforge-dev/basely" target="_blank" rel="noopener" className="hover:text-white transition-colors">GitHub</a>
             <a href="/signup" className="bg-white text-black px-4 py-1.5 rounded-md font-medium hover:bg-white/90 transition-colors">
               Get started
             </a>
@@ -98,14 +98,14 @@ export default function Home() {
           <span className="text-white/40">For AI agents and indie devs.</span>
         </h1>
         <p className="text-white/50 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
-          dbforge provisions isolated Postgres databases instantly — no containers, no waiting.
+          basely provisions isolated Postgres databases instantly — no containers, no waiting.
           Claude, Cursor, and your CLI can create databases, run migrations, and generate TypeScript types without any human steps.
         </p>
         <div className="flex items-center justify-center gap-4">
           <a href="#docs" className="bg-white text-black px-6 py-3 rounded-lg font-semibold hover:bg-white/90 transition-colors">
             Quickstart →
           </a>
-          <a href="https://github.com/dbforge-dev/dbforge" target="_blank" rel="noopener" className="border border-white/20 text-white/60 px-6 py-3 rounded-lg font-medium hover:border-white/40 hover:text-white transition-colors">
+          <a href="https://github.com/dbforge-dev/basely" target="_blank" rel="noopener" className="border border-white/20 text-white/60 px-6 py-3 rounded-lg font-medium hover:border-white/40 hover:text-white transition-colors">
             View on GitHub
           </a>
         </div>
@@ -201,7 +201,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto flex items-center justify-between text-white/30 text-sm">
           <span className="font-medium">basely</span>
           <div className="flex gap-6">
-            <a href="https://github.com/dbforge-dev/dbforge" target="_blank" rel="noopener" className="hover:text-white/60 transition-colors">GitHub</a>
+            <a href="https://github.com/dbforge-dev/basely" target="_blank" rel="noopener" className="hover:text-white/60 transition-colors">GitHub</a>
             <a href="mailto:hello@dbforge.dev" className="hover:text-white/60 transition-colors">Contact</a>
           </div>
         </div>

@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import os from 'os'
 
-const CONFIG_DIR = path.join(os.homedir(), '.dbforge')
+const CONFIG_DIR = path.join(os.homedir(), '.basely')
 const CONFIG_FILE = path.join(CONFIG_DIR, 'config.json')
 const PROJECTS_FILE = path.join(CONFIG_DIR, 'projects.json')
 
@@ -25,7 +25,7 @@ function ensureDir() {
 export function getConfig(): Config {
   ensureDir()
   if (!fs.existsSync(CONFIG_FILE)) {
-    console.error('Not configured. Run: dbforge auth setup')
+    console.error('Not configured. Run: basely auth setup')
     process.exit(1)
   }
   return JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf8'))
@@ -58,7 +58,7 @@ export function getProject(id: string): ProjectEntry {
   const projects = getProjects()
   const p = projects[id]
   if (!p) {
-    console.error(`Project "${id}" not found. Run: dbforge projects list`)
+    console.error(`Project "${id}" not found. Run: basely projects list`)
     process.exit(1)
   }
   return p

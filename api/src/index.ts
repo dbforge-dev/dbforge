@@ -36,5 +36,5 @@ app.use('/projects/:projectId/migrations', (_req, _res, next) => { next() }, mig
 const port = Number(process.env.PORT ?? 3000)
 
 bootstrapSystemTables()
-  .then(() => app.listen(port, () => console.log(`dbforge-api listening on :${port}`)))
+  .then(() => app.listen(port, () => console.log(`basely-api listening on :${port}`)))
   .catch(err => { console.error('Failed to bootstrap:', err); process.exit(1) })

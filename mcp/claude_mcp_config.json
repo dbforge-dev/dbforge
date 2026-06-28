@@ -1,11 +1,11 @@
 {
   "mcpServers": {
-    "dbforge": {
+    "basely": {
       "command": "node",
-      "args": ["/Users/sushanthtiruvaipati/Documents/GitHub/dbforge-mcp/dist/index.js"],
+      "args": ["/Users/sushanthtiruvaipati/Documents/GitHub/dbforge/mcp/dist/index.js"],
       "env": {
-        "DBFORGE_API_URL": "http://localhost:3000",
-        "DBFORGE_API_KEY": "your-api-key-here"
+        "BASELY_API_URL": "http://localhost:3000",
+        "BASELY_API_KEY": "your-api-key-here"
       }
     }
   }
