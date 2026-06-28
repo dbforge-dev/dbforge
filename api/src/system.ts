@@ -44,6 +44,17 @@ export async function bootstrapSystemTables() {
       )
     `)
 
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS _dbforge.password_reset_tokens (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER NOT NULL REFERENCES _dbforge.users(id) ON DELETE CASCADE,
+        token_hash TEXT NOT NULL UNIQUE,
+        expires_at TIMESTAMPTZ NOT NULL,
+        used_at TIMESTAMPTZ,
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+      )
+    `)
+
     console.log('System tables ready')
   } finally {
     client.release()

@@ -8,6 +8,7 @@ import projectsRouter from './routes/projects'
 import queryRouter from './routes/query'
 import schemaRouter from './routes/schema'
 import migrationsRouter from './routes/migrations'
+import adminRouter from './routes/admin'
 
 const app = express()
 
@@ -17,6 +18,8 @@ app.post('/billing/webhook', express.raw({ type: 'application/json' }), (req, re
 })
 
 app.use(express.json())
+
+app.use('/admin', adminRouter)
 
 app.get('/health', (_req, res) => res.json({ ok: true }))
 

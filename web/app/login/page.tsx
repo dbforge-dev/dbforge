@@ -30,12 +30,21 @@ export default function LoginPage() {
     router.push("/dashboard");
   }
 
+  const resetSuccess = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("reset") === "1";
+
   return (
-    <AuthForm
-      title="Welcome back"
-      subtitle={<>No account? <a href="/signup" className="text-white hover:underline">Sign up free</a></>}
-      cta="Log in"
-      onSubmit={handleLogin}
-    />
+    <>
+      {resetSuccess && (
+        <div className="fixed top-4 left-1/2 -translate-x-1/2 bg-green-400/10 border border-green-400/20 text-green-400 text-sm px-5 py-3 rounded-xl z-50">
+          Password reset — log in with your new password.
+        </div>
+      )}
+      <AuthForm
+        title="Welcome back"
+        subtitle={<>No account? <a href="/signup" className="text-white hover:underline">Sign up free</a> · <a href="/forgot-password" className="text-white/50 hover:text-white transition-colors">Forgot password?</a></>}
+        cta="Log in"
+        onSubmit={handleLogin}
+      />
+    </>
   );
 }

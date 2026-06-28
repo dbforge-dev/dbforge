@@ -99,5 +99,81 @@ router.delete('/keys/:id', requireJwt, async (req: any, res) => {
   res.json({ revoked: true })
 })
 
+// POST /auth/forgot-password
+router.post('/forgot-password', async (req, res) => {
+  const { email } = req.body
+  if (!email) { res.json({ ok: true }); return }
+
+  const { rows } = await adminPool.query(
+    `SELECT id FROM _dbforge.users WHERE email = $1`,
+    [email.toLowerCase()]
+  )
+  const user = rows[0]
+
+  if (user) {
+    const rawToken = crypto.randomBytes(32).toString('hex')
+    const tokenHash = crypto.createHash('sha256').update(rawToken).digest('hex')
+
+    await adminPool.query(
+      `INSERT INTO _dbforge.password_reset_tokens (user_id, token_hash, expires_at)
+       VALUES ($1, $2, NOW() + INTERVAL '1 hour')`,
+      [user.id, tokenHash]
+    )
+
+    const webUrl = process.env.WEB_URL ?? 'https://basely.cc'
+    const resetUrl = `${webUrl}/reset-password?token=${rawToken}`
+
+    if (process.env.RESEND_API_KEY) {
+      await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: 'basely <noreply@basely.cc>',
+          to: [email],
+          subject: 'Reset your basely password',
+          html: `<p>Click <a href="${resetUrl}">here</a> to reset your password. Link expires in 1 hour.</p>`,
+        }),
+      })
+    } else {
+      console.log(`[forgot-password] Reset URL (RESEND_API_KEY not set): ${resetUrl}`)
+    }
+  }
+
+  res.json({ ok: true })
+})
+
+// POST /auth/reset-password
+router.post('/reset-password', async (req, res) => {
+  const { token, password } = req.body
+  if (!token || !password) { res.status(400).json({ error: 'token and password required' }); return }
+  if (password.length < 8) { res.status(400).json({ error: 'Password must be at least 8 characters' }); return }
+
+  const tokenHash = crypto.createHash('sha256').update(token).digest('hex')
+
+  const { rows } = await adminPool.query(
+    `SELECT id, user_id FROM _dbforge.password_reset_tokens
+     WHERE token_hash = $1 AND used_at IS NULL AND expires_at > NOW()`,
+    [tokenHash]
+  )
+  const record = rows[0]
+  if (!record) { res.status(400).json({ error: 'Invalid or expired token' }); return }
+
+  const passwordHash = await bcrypt.hash(password, 10)
+
+  await adminPool.query(
+    `UPDATE _dbforge.users SET password_hash = $1 WHERE id = $2`,
+    [passwordHash, record.user_id]
+  )
+  await adminPool.query(
+    `UPDATE _dbforge.password_reset_tokens SET used_at = NOW() WHERE id = $1`,
+    [record.id]
+  )
+
+  res.json({ ok: true })
+})
+
 export { requireJwt }
 export default router
