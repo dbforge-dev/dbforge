@@ -4,7 +4,7 @@ const QUICKSTART = `# Install
 npm install -g dbforge
 
 # Configure
-dbforge auth setup --url https://dbforge-api.fly.dev --key <your-key>
+dbforge auth setup --url https://api.basely.cc --key <your-key>
 
 # Create a database (< 1 second)
 dbforge projects create myapp
@@ -22,7 +22,7 @@ const MCP_CONFIG = `// claude_desktop_config.json
       "command": "node",
       "args": ["/path/to/dbforge-mcp/dist/index.js"],
       "env": {
-        "DBFORGE_API_URL": "https://dbforge-api.fly.dev",
+        "DBFORGE_API_URL": "https://api.basely.cc",
         "DBFORGE_API_KEY": "dbf_..."
       }
     }
