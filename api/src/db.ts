@@ -1,12 +1,15 @@
 import { Pool } from 'pg'
 
+const ssl = { rejectUnauthorized: false }
+
 // Admin pool — superuser, used only for provisioning
 export const adminPool = new Pool({
   connectionString: process.env.DATABASE_URL,
   max: 5,
+  ssl,
 })
 
 // Return a pool scoped to a specific project schema
 export function projectPool(connectionString: string) {
-  return new Pool({ connectionString, max: 3 })
+  return new Pool({ connectionString, max: 3, ssl })
 }

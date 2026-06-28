@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
     return
   }
 
-  const pool = new Pool({ connectionString, max: 1 })
+  const pool = new Pool({ connectionString, max: 1, ssl: { rejectUnauthorized: false } })
   const client = await pool.connect()
 
   try {
@@ -56,7 +56,7 @@ router.get('/', async (req, res) => {
     return
   }
 
-  const pool = new Pool({ connectionString, max: 1 })
+  const pool = new Pool({ connectionString, max: 1, ssl: { rejectUnauthorized: false } })
   try {
     const { rows } = await pool.query(
       'SELECT name, applied_at FROM _migrations ORDER BY applied_at'

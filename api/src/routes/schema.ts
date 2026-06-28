@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { adminPool } from '../db'
 
-const router = Router()
+const router = Router({ mergeParams: true })
 
 // GET /projects/:id/schema
 // Returns tables + columns for the project schema — useful for AI context
