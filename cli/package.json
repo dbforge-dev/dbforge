@@ -1,5 +1,5 @@
 {
-  "name": "basely",
+  "name": "@basely-cli/cli",
   "version": "0.1.0",
   "description": "CLI for basely — AI-native Postgres provisioning",
   "bin": {
