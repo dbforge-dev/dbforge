@@ -1,24 +1,24 @@
 import { CodeBlock } from "./components/CodeBlock";
 
 const QUICKSTART = `# Install
-npm install -g dbforge
+npm install -g basely
 
 # Configure
-dbforge auth setup --url https://api.basely.cc --key <your-key>
+basely auth setup --url https://api.basely.cc --key <your-key>
 
 # Create a database (< 1 second)
-dbforge projects create myapp
+basely projects create myapp
 
 # Run a migration
-dbforge migration push myapp --name 001_init --file schema.sql
+basely migration push myapp --name 001_init --file schema.sql
 
 # Generate TypeScript types
-dbforge gen types myapp --out src/db.ts`;
+basely gen types myapp --out src/db.ts`;
 
 const MCP_CONFIG = `// claude_desktop_config.json
 {
   "mcpServers": {
-    "dbforge": {
+    "basely": {
       "command": "node",
       "args": ["/path/to/dbforge-mcp/dist/index.js"],
       "env": {
@@ -76,7 +76,7 @@ export default function Home() {
       {/* Nav */}
       <nav className="border-b border-white/10 px-6 py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <span className="text-white font-semibold text-lg tracking-tight">dbforge</span>
+          <span className="text-white font-semibold text-lg tracking-tight">basely</span>
           <div className="flex items-center gap-6 text-sm text-white/60">
             <a href="#docs"    className="hover:text-white transition-colors">Docs</a>
             <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
@@ -199,7 +199,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-white/10 py-8 px-6">
         <div className="max-w-6xl mx-auto flex items-center justify-between text-white/30 text-sm">
-          <span className="font-medium">dbforge</span>
+          <span className="font-medium">basely</span>
           <div className="flex gap-6">
             <a href="https://github.com/dbforge-dev/dbforge" target="_blank" rel="noopener" className="hover:text-white/60 transition-colors">GitHub</a>
             <a href="mailto:hello@dbforge.dev" className="hover:text-white/60 transition-colors">Contact</a>

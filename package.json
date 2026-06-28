@@ -1,5 +1,5 @@
 {
-  "name": "dbforge",
+  "name": "basely",
   "private": true,
   "workspaces": ["api", "cli", "mcp"],
   "scripts": {

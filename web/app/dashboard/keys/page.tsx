@@ -72,7 +72,7 @@ export default function KeysPage() {
     <div className="min-h-screen bg-[#0a0a0a] text-[#ededed]">
       <nav className="border-b border-white/10 px-6 py-4">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <a href="/" className="text-white font-semibold tracking-tight">dbforge</a>
+          <a href="/" className="text-white font-semibold tracking-tight">basely</a>
           <div className="flex items-center gap-4 text-sm">
             <a href="/dashboard" className="text-white/50 hover:text-white transition-colors">Projects</a>
             <button onClick={() => { clearSession(); router.push("/"); }} className="text-white/30 hover:text-white/60 transition-colors">Log out</button>

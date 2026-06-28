@@ -8,11 +8,11 @@ import {
 } from '@modelcontextprotocol/sdk/types.js'
 import fetch from 'node-fetch'
 
-const API_URL = (process.env.DBFORGE_API_URL ?? '').replace(/\/$/, '')
-const API_KEY = process.env.DBFORGE_API_KEY ?? ''
+const API_URL = (process.env.BASELY_API_URL ?? '').replace(/\/$/, '')
+const API_KEY = process.env.BASELY_API_KEY ?? ''
 
 if (!API_URL || !API_KEY) {
-  console.error('DBFORGE_API_URL and DBFORGE_API_KEY must be set')
+  console.error('BASELY_API_URL and BASELY_API_KEY must be set')
   process.exit(1)
 }
 

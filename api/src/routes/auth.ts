@@ -67,7 +67,7 @@ router.post('/login', async (req, res) => {
 // POST /auth/keys — create API key
 router.post('/keys', requireJwt, async (req: any, res) => {
   const { name = 'default' } = req.body
-  const rawKey = `dbf_${crypto.randomBytes(32).toString('base64url')}`
+  const rawKey = `bly_${crypto.randomBytes(32).toString('base64url')}`
   const keyHash = crypto.createHash('sha256').update(rawKey).digest('hex')
   const keyPrefix = rawKey.slice(0, 12)
 

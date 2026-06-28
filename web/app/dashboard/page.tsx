@@ -129,7 +129,7 @@ function Dashboard() {
     <div className="min-h-screen bg-[#0a0a0a] text-[#ededed]">
       <nav className="border-b border-white/10 px-6 py-4">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <a href="/" className="text-white font-semibold tracking-tight">dbforge</a>
+          <a href="/" className="text-white font-semibold tracking-tight">basely</a>
           <div className="flex items-center gap-4 text-sm">
             <a href="/dashboard/keys" className="text-white/50 hover:text-white transition-colors">API keys</a>
             <button onClick={() => { clearSession(); router.push("/"); }} className="text-white/30 hover:text-white/60 transition-colors">Log out</button>
@@ -240,7 +240,7 @@ function Dashboard() {
               <code className="text-white/60 text-xs font-mono flex-1 break-all">{apiKey}</code>
               <CopyButton text={apiKey} />
             </div>
-            <p className="text-white/20 text-xs mt-2 font-mono">dbforge auth setup --url https://dbforge-api.fly.dev --key &lt;key&gt;</p>
+            <p className="text-white/20 text-xs mt-2 font-mono">basely auth setup --url https://dbforge-api.fly.dev --key &lt;key&gt;</p>
           </div>
         )}
 

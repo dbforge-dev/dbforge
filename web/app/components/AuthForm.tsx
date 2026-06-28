@@ -30,7 +30,7 @@ export function AuthForm({ title, subtitle, cta, onSubmit }: Props) {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center px-4">
-      <a href="/" className="text-white font-semibold text-xl mb-10 tracking-tight">dbforge</a>
+      <a href="/" className="text-white font-semibold text-xl mb-10 tracking-tight">basely</a>
 
       <div className="w-full max-w-sm bg-white/5 border border-white/10 rounded-2xl p-8">
         <h1 className="text-white text-2xl font-bold mb-1">{title}</h1>

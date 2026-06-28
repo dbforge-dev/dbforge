@@ -1,9 +1,9 @@
 {
-  "name": "dbforge",
+  "name": "basely",
   "version": "0.1.0",
   "description": "CLI for dbforge — AI-native Postgres provisioning",
   "bin": {
-    "dbforge": "./dist/index.js"
+    "basely": "./dist/index.js"
   },
   "scripts": {
     "dev": "tsx src/index.ts",

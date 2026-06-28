@@ -2,20 +2,20 @@
 
 export function getJwt(): string | null {
   if (typeof window === "undefined") return null;
-  return localStorage.getItem("dbforge_jwt");
+  return localStorage.getItem("basely_jwt");
 }
 
 export function getApiKey(): string | null {
   if (typeof window === "undefined") return null;
-  return localStorage.getItem("dbforge_api_key");
+  return localStorage.getItem("basely_api_key");
 }
 
 export function saveSession(jwt: string, apiKey: string) {
-  localStorage.setItem("dbforge_jwt", jwt);
-  localStorage.setItem("dbforge_api_key", apiKey);
+  localStorage.setItem("basely_jwt", jwt);
+  localStorage.setItem("basely_api_key", apiKey);
 }
 
 export function clearSession() {
-  localStorage.removeItem("dbforge_jwt");
-  localStorage.removeItem("dbforge_api_key");
+  localStorage.removeItem("basely_jwt");
+  localStorage.removeItem("basely_api_key");
 }
