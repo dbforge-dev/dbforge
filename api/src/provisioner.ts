@@ -61,9 +61,11 @@ export async function createProject(projectId: string): Promise<Project> {
     await client.query('COMMIT')
 
     const url = new URL(process.env.DATABASE_URL!)
+    const isFly = (process.env.DATABASE_URL ?? '').includes('sslmode=disable')
+    const sslParam = isFly ? '&sslmode=disable' : ''
     const connectionString =
       `postgres://${role}:${password}@${url.host}${url.pathname}` +
-      `?options=-csearch_path%3D"${schema}"`
+      `?options=-csearch_path%3D"${schema}"${sslParam}`
 
     return { id: projectId, schema, role, connectionString }
   } catch (err) {

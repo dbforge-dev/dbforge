@@ -8,7 +8,8 @@ const pools = new Map<string, Pool>()
 
 function getPool(connectionString: string) {
   if (!pools.has(connectionString)) {
-    pools.set(connectionString, new Pool({ connectionString, max: 3, ssl: { rejectUnauthorized: false } }))
+    const ssl = connectionString.includes('sslmode=disable') ? false : { rejectUnauthorized: false }
+    pools.set(connectionString, new Pool({ connectionString, max: 3, ssl }))
   }
   return pools.get(connectionString)!
 }
