@@ -1,6 +1,5 @@
 import { adminPool } from './db'
 
-// Bootstrap system tables in a _dbforge schema on first boot
 export async function bootstrapSystemTables() {
   const client = await adminPool.connect()
   try {
@@ -11,9 +10,17 @@ export async function bootstrapSystemTables() {
         id SERIAL PRIMARY KEY,
         email TEXT NOT NULL UNIQUE,
         password_hash TEXT NOT NULL,
+        plan TEXT NOT NULL DEFAULT 'hobby',
+        stripe_customer_id TEXT,
+        stripe_subscription_id TEXT,
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
       )
     `)
+
+    // Add billing columns if they don't exist (safe migration for existing installs)
+    await client.query(`ALTER TABLE _dbforge.users ADD COLUMN IF NOT EXISTS plan TEXT NOT NULL DEFAULT 'hobby'`)
+    await client.query(`ALTER TABLE _dbforge.users ADD COLUMN IF NOT EXISTS stripe_customer_id TEXT`)
+    await client.query(`ALTER TABLE _dbforge.users ADD COLUMN IF NOT EXISTS stripe_subscription_id TEXT`)
 
     await client.query(`
       CREATE TABLE IF NOT EXISTS _dbforge.api_keys (

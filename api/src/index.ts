@@ -3,26 +3,35 @@ import express from 'express'
 import { requireApiKey } from './auth'
 import { bootstrapSystemTables } from './system'
 import authRouter from './routes/auth'
+import billingRouter from './routes/billing'
 import projectsRouter from './routes/projects'
 import queryRouter from './routes/query'
 import schemaRouter from './routes/schema'
 import migrationsRouter from './routes/migrations'
 
 const app = express()
+
+// Stripe webhook needs raw body — must be before express.json()
+app.post('/billing/webhook', express.raw({ type: 'application/json' }), (req, res, next) => {
+  billingRouter(req, res, next)
+})
+
 app.use(express.json())
 
 app.get('/health', (_req, res) => res.json({ ok: true }))
 
-// Auth routes — no API key required
+// Public auth routes
 app.use('/auth', authRouter)
 
-// All other routes require a valid per-user API key
+// Billing status + checkout — requires JWT (not API key)
+app.use('/billing', billingRouter)
+
+// All project routes require API key
 app.use(requireApiKey)
 app.use('/projects', projectsRouter)
-
-app.use('/projects/:projectId/query', (req, _res, next) => { next() }, queryRouter)
-app.use('/projects/:projectId/schema', (req, _res, next) => { next() }, schemaRouter)
-app.use('/projects/:projectId/migrations', (req, _res, next) => { next() }, migrationsRouter)
+app.use('/projects/:projectId/query', (_req, _res, next) => { next() }, queryRouter)
+app.use('/projects/:projectId/schema', (_req, _res, next) => { next() }, schemaRouter)
+app.use('/projects/:projectId/migrations', (_req, _res, next) => { next() }, migrationsRouter)
 
 const port = Number(process.env.PORT ?? 3000)
 
