@@ -81,7 +81,7 @@ export default function Home() {
             <a href="#docs"    className="hover:text-white transition-colors">Docs</a>
             <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
             <a href="https://github.com/dbforge-dev/dbforge" target="_blank" rel="noopener" className="hover:text-white transition-colors">GitHub</a>
-            <a href="https://dbforge-api.fly.dev" className="bg-white text-black px-4 py-1.5 rounded-md font-medium hover:bg-white/90 transition-colors">
+            <a href="/signup" className="bg-white text-black px-4 py-1.5 rounded-md font-medium hover:bg-white/90 transition-colors">
               Get started
             </a>
           </div>
@@ -186,7 +186,7 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <a href="https://dbforge-api.fly.dev" className={`block text-center py-2.5 rounded-lg text-sm font-semibold transition-colors ${
+              <a href="/signup" className={`block text-center py-2.5 rounded-lg text-sm font-semibold transition-colors ${
                 p.highlight
                   ? "bg-black text-white hover:bg-black/80"
                   : "bg-white/10 text-white hover:bg-white/20"
